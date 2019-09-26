@@ -1,0 +1,25 @@
+version: "3.7"
+
+networks:
+  tf_net:
+    driver: overlay
+    attachable: true
+    name: tf_net
+
+services:
+  tf_jupyter:
+    image: tensorflow/tensorflow:latest-py3-jupyter
+    networks:
+      - tf_net
+    ports:
+      - "8888:8888"
+    volumes:
+      - "./notebooks/:/tf/notebooks"
+
+  tf_model3:
+    image: tf_serving:model3
+    networks:
+      - tf_net
+    deploy:
+      replicas: 3
+      endpoint_mode: vip

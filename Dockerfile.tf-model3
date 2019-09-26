@@ -1,0 +1,3 @@
+FROM tensorflow/serving
+COPY ./notebooks/saved_models /models/
+ENV MODEL_NAME=my_model3
