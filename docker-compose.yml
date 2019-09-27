@@ -18,6 +18,9 @@ services:
 
   tf_model3:
     image: tf_serving:model3
+    build:
+      context: .
+      dockerfile: Dockerfile.tf-model3
     networks:
       - tf_net
     deploy:
