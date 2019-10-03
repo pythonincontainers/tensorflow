@@ -8,7 +8,7 @@ networks:
 
 services:
   tf_jupyter:
-    image: tensorflow/tensorflow:latest-py3-jupyter
+    image: tensorflow/tensorflow:1.14.0-py3-jupyter
     networks:
       - tf_net
     ports:
