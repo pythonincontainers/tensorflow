@@ -1,16 +1,8 @@
 version: "3.7"
 
-networks:
-  tf_net:
-    driver: overlay
-    attachable: true
-    name: tf_net
-
 services:
   tf_jupyter:
     image: tensorflow/tensorflow:1.14.0-py3-jupyter
-    networks:
-      - tf_net
     ports:
       - "8888:8888"
     volumes:
@@ -21,16 +13,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.tf-model3
-    networks:
-      - tf_net
     deploy:
       replicas: 3
       endpoint_mode: vip
 
   tf_gpu:
     image: tensorflow/tensorflow:1.14.0-gpu-py3-jupyter
-    networks:
-      - tf_net
     ports:
       - "8888:8888"
     volumes:
@@ -38,8 +26,6 @@ services:
 
   tf_latest:
     image: tensorflow/tensorflow:latest-py3-jupyter
-    networks:
-      - tf_net
     ports:
       - "8888:8888"
     volumes:
