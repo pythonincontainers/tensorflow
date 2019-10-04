@@ -26,3 +26,21 @@ services:
     deploy:
       replicas: 3
       endpoint_mode: vip
+
+  tf_gpu:
+    image: tensorflow/tensorflow:1.14.0-gpu-py3-jupyter
+    networks:
+      - tf_net
+    ports:
+      - "8888:8888"
+    volumes:
+      - "./notebooks/:/tf/notebooks"
+
+  tf_latest:
+    image: tensorflow/tensorflow:latest-py3-jupyter
+    networks:
+      - tf_net
+    ports:
+      - "8888:8888"
+    volumes:
+      - "./notebooks/:/tf/notebooks"
